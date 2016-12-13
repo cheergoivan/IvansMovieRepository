@@ -1,0 +1,7 @@
+			<article>
+				<header class="feature">
+					<h1 class="film-title">{{name}}</h1>
+					<p class="film-detail">{{year}} | {{director}} | {{ratings}}</p>
+					<img src="{{photo}}" width="100%" alt="{{name}}" />
+				</header>
+			</article>

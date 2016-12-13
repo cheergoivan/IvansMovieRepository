@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ivan's gitcafe page</title>
+<link rel="stylesheet" href="main.css" />
+<link rel="shortcut icon" href="film.ico">
+</head>
+<body>
+	<div id="container">
+		<header id="header" class="clear">
+			<h1 id="title">
+				<a href="index.html" title="Ivan's
+					Movie Repository">Ivan's
+					gitcafe page</a>
+			</h1>
+			<nav id="nav" class="nav">
+				<ul>
+					<li><a href="1.html">movies</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="main">
+			<article>
+				<header class="feature">
+					<h1 class="film-title">DogTooth</h1>
+					<p class="film-detail">2009 | Yorgos Lanthimos | 8.2</p>
+					<img src="Kynodontas_2009_Yorgos Lanthimos_8.2.jpg" width="100%" alt="Dogtooth" />
+				</header>
+			</article>
+		</div>
+	</div>
+</body>
+</html>

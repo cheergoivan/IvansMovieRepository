@@ -1,0 +1,9 @@
+			<article>
+				<header class="feature">
+					<h1 class="film-title"><a href="https://movie.douban.com/subject/{{doubanId}}">{{name}}</a></h1>
+					<p class="film-detail">{{year}} | {{director}} | {{ratings}}</p>
+					<a href="https://movie.douban.com/subject/{{doubanId}}">
+						<img src="{{poster}}" width="100%" alt="{{name}}" />
+					</a>
+				</header>
+			</article>

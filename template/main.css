@@ -1,0 +1,108 @@
+body {
+	color: #333;
+	font: 0.625em Georgia, "Times New Roman", Times, serif;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#container {
+	max-width: 37%;
+	margin: 0 auto;
+	padding: 0 20px;
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+}
+
+#header {
+	margin: 0 auto;
+	padding: 4em 0 1em;
+	display: block;
+}
+
+.clear:after {
+	clear: both;
+}
+
+.clear:before, .clear:after {
+	content: "";
+	display: table;
+}
+
+#title {
+	float: left;
+	font-size: 1.5em;
+}
+
+#title a {
+	padding: 4px 0;
+	display: block;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover {
+	color: #666;
+}
+
+
+#nav {
+	float: right;
+	font-size: 1.5em;
+	display: block;
+}
+
+#nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+#nav li {
+	margin-left: 1em;
+	display: inline;
+}
+
+
+#nav a.on {
+	border-color: #333;
+}
+
+#nav a {
+	padding: 4px 0;
+	border-bottom: 1px solid #fff;
+	display: inline-block;
+}
+
+
+#nav a:hover {
+	border-color: #ccc;
+}
+
+
+.feature .film-title {
+	margin-top: 2em;
+	margin-bottom: 1em;
+	display: inline-block;
+	margin-right: 0.6em;
+}
+
+.feature .film-detail {
+	margin-bottom: 0;
+	display: inline-block;
+	font-style: italic;
+	font-size: 1.2em;
+}
+
+.page{
+	font-size: 1.5em;
+	text-decoration: none;
+}
+
+footer{
+	margin:2em 0;
+	text-align:center;
+}

@@ -1,0 +1,7 @@
+		</div>
+		<footer>
+			<a href="{{nextPage}}" title="next page" class="page">next page</a>
+		</footer>
+	</div>
+</body>
+</html>
