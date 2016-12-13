@@ -24,15 +24,7 @@ import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
  *
  */
 public class GitUtil {
-	public static final String local="C:\\Users\\i321035\\Desktop\\IvansMovieRepo";
-	
 	private static final PrintStream console=System.out;
-	
-	public static void main(String[] args) throws Exception{
-//		GitUtil.pullRepository(local);
-	//	GitUtil.commitAndPush(local, "ss", "cheergoivan@gmail.com", "asdfghjk456");
-		System.out.println(GitUtil.hasChanged(local));
-	}
 	
 	public static void commitAndPush(String localRepositoryPath, String message, String username, String password)
 			throws Exception {
