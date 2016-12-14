@@ -63,7 +63,8 @@ public class Main {
 			System.err.println("Casued by:"+e1.getMessage());
 			return;
 		}
-		if(!StringUtil.isEmpty(Settings.remoteRepository.getValueAsString())&&SetLocalRepository.isLocalRepositorySetted()){
+		if((!StringUtil.isEmpty(Settings.remoteRepository.getValueAsString()))&&SetLocalRepository.isLocalRepositorySetted()){
+			System.out.println("connect to remote repository...");
 			try {
 				GitUtil.disableOutputMessage();
 				GitUtil.pullRepository(Settings.localRepository.getValueAsString());

@@ -16,6 +16,8 @@ public class MoviesReader {
 			Movie movie=fileToMovie(file);
 			if(movie!=null)
 				result.add(movie);
+			else
+				System.out.println(file.getName()+" is not a correct movie name");
 		});
 		return result;
 	}

@@ -14,7 +14,8 @@ public class HelpCommand implements CommandExecutor{
 		System.out.println(tab+"set webPageTitle <title of the movie web page>");
 		System.out.println(tab+"set moviesPerPage <the quantity of movies displayed on one page>");
 		System.out.println(tab+"settings (display current settings)");
-		System.out.println(tab+"push (push files of local repository to remote repository)");
+		System.out.println(tab+"make (generate web pages without pushing them to server)");
+		System.out.println(tab+"push (generate web pages and push files of local repository to remote repository)");
 		System.out.println(tab+"help (display all commands and usage)");
 		System.out.println(tab+"exit (exit the program)");
 	}

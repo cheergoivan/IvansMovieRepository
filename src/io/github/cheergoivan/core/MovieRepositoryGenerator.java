@@ -86,7 +86,7 @@ public class MovieRepositoryGenerator {
 		File newFile = new File(newHtmlFilePath);
 		if(!newFile.exists())
 			newFile.createNewFile();
-		Files.write(Paths.get(newHtmlFilePath),fileContent.getBytes(),StandardOpenOption.TRUNCATE_EXISTING);
+		Files.write(Paths.get(newHtmlFilePath),fileContent.getBytes("utf-8"),StandardOpenOption.TRUNCATE_EXISTING);
 	}
 	
 	private String htmlFileName(int page){
