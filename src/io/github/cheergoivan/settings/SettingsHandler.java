@@ -22,7 +22,7 @@ public class SettingsHandler {
 	}
 	
 	public static void set(Settings setting,String value)  throws IllegalArgumentException, IOException{
-		if(!setting.getAssertValueType().test(value))
+		if(!setting.getValuePredicate().test(value))
 			throw new IllegalArgumentException("illegal setting value");
 		Properties prop=readFile(settingsFilePath);
 		prop.setProperty(setting.name(), value);

@@ -9,7 +9,6 @@ import io.github.cheergoivan.command.CommandExecutor;
 import io.github.cheergoivan.commandImpl.HelpCommand;
 import io.github.cheergoivan.settings.Settings;
 import io.github.cheergoivan.settings.SettingsHandler;
-import io.github.cheergoivan.settings.settingAction.SetLocalRepository;
 import io.github.cheergoivan.util.GitUtil;
 import io.github.cheergoivan.util.StringUtil;
 
@@ -63,7 +62,7 @@ public class Main {
 			System.err.println("Casued by:"+e1.getMessage());
 			return;
 		}
-		if((!StringUtil.isEmpty(Settings.remoteRepository.getValueAsString()))&&SetLocalRepository.isLocalRepositorySetted()){
+		if(Settings.remoteRepository.isSetted()&&Settings.localRepository.isSetted()){
 			System.out.println("connect to remote repository...");
 			try {
 				GitUtil.disableOutputMessage();
@@ -75,6 +74,7 @@ public class Main {
 			}finally{
 				GitUtil.enableOutputMessage();
 			}
+			System.out.println("connect to remote repository successfully!");
 		}
 	}
 }

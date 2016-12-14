@@ -5,13 +5,25 @@ import java.util.function.Predicate;
 
 import io.github.cheergoivan.settings.settingAction.DefaultSettingAction;
 import io.github.cheergoivan.settings.settingAction.SetLocalRepository;
-import io.github.cheergoivan.settings.settingValuePredicate.AssertPositiveInteger;
-import io.github.cheergoivan.settings.settingValuePredicate.AssertString;
+import io.github.cheergoivan.settings.settingValuePredicate.PositiveNumberPredicate;
+import io.github.cheergoivan.settings.settingValuePredicate.TruePredicate;
+import io.github.cheergoivan.settings.settingValuePredicate.LocalRepositoryPredicate;
 
 public enum Settings {
 
-	remoteRepository(""),username("",false),password("",false),localRepository("",new SetLocalRepository()),
-	webPageTemplate(""),webPageTitle(""),moviesPerPage(7,true,new AssertPositiveInteger(),new DefaultSettingAction());
+	remoteRepository(""),
+	
+	username("",false),
+	
+	password("",false),
+	
+	localRepository("",true,LocalRepositoryPredicate.class,SetLocalRepository.class),
+	
+	webPageTemplate(""),
+	
+	webPageTitle(""),
+	
+	moviesPerPage(7,true,PositiveNumberPredicate.class,DefaultSettingAction.class);
 
 
 	private Object value;
@@ -19,34 +31,35 @@ public enum Settings {
 	 * whether the setting is displayed to user
 	 */
 	private boolean visible;
-	private Predicate<String> assertValueType;
-	private Consumer<Object> settingAction;
+	private Class<? extends Predicate<Object>> valuePredicate;
+	private Class<? extends Consumer<Object>> settingAction;
+	
 	
 	Settings(Object value){
 		this.value=value;
 		this.visible=true;
-		this.assertValueType=new AssertString();
-		this.settingAction=new DefaultSettingAction();
+		this.valuePredicate=TruePredicate.class;
+		this.settingAction=DefaultSettingAction.class;
 	}
 	
-	Settings(Object value,Consumer<Object> settingAction){
+	Settings(Object value,Class<? extends Consumer<Object>> settingAction){
 		this.value=value;
 		this.visible=true;
-		this.assertValueType=new AssertString();
+		this.valuePredicate=TruePredicate.class;
 		this.settingAction=settingAction;
 	}
 	
 	Settings(Object value,boolean visible){
 		this.value=value;
 		this.visible=visible;
-		this.assertValueType=new AssertString();
-		this.settingAction=new DefaultSettingAction();
+		this.valuePredicate=TruePredicate.class;
+		this.settingAction=DefaultSettingAction.class;
 	}
 	
-	Settings(Object value,boolean visible,Predicate<String> assertValueType,Consumer<Object> settingAction) {
+	Settings(Object value,boolean visible,Class<? extends Predicate<Object>> valuePredicate,Class<? extends Consumer<Object>> settingAction) {
 		this.value = value;
 		this.visible=visible;
-		this.assertValueType=assertValueType;
+		this.valuePredicate=valuePredicate;
 		this.settingAction=settingAction;
 	}
 
@@ -58,16 +71,26 @@ public enum Settings {
 		return visible;
 	}
 
-	public Predicate<String> getAssertValueType() {
-		return assertValueType;
+	public Predicate<Object> getValuePredicate() {
+		try {
+			return valuePredicate.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return new TruePredicate();
 	}
 	
 	public Consumer<Object> getSettingAction() {
-		return settingAction;
+		try {
+			return settingAction.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return new DefaultSettingAction();
 	}
 	
 	public String getValueAsString(){
-		return (String)value;
+		return String.valueOf(value);
 	}
 	
 	public int getValueAsInteger(){
@@ -92,7 +115,7 @@ public enum Settings {
 		return name()+":"+value;
 	}
 	
-	public boolean isEmpty(){
-		return value==null||value.equals("");
+	public boolean isSetted(){
+		return value!=null&&!getValueAsString().equals("");
 	}
 }

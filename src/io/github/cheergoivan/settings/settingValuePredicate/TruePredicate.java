@@ -2,11 +2,10 @@ package io.github.cheergoivan.settings.settingValuePredicate;
 
 import java.util.function.Predicate;
 
-public class AssertString implements Predicate<String>{
+public class TruePredicate implements Predicate<Object>{
 
 	@Override
-	public boolean test(String t) {
+	public boolean test(Object t) {
 		return true;
 	}
-
 }
