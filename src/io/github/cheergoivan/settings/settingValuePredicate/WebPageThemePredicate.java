@@ -21,7 +21,7 @@ public class WebPageThemePredicate  implements Predicate<Object>{
 			StringUtil.printError("please set local respository first");
 			result=false;
 		}else if(!webPageThemeDir.exists()||!webPageThemeDir.isDirectory()){
-			StringUtil.printError("Theme "+theme+" doesn't exist!If you want to add a theme,"
+			StringUtil.printError("Theme "+theme+" doesn't exist! If you want to add a theme,"
 					+ "put the theme in directory "+localRepoPath+GlobalSettings.themeDir);
 			result=false;
 		}else{

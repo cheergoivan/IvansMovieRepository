@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 
 import io.github.cheergoivan.settings.GlobalSettings;
 import io.github.cheergoivan.settings.Settings;
+import io.github.cheergoivan.settings.settingAction.SetWebPageTheme;
 import io.github.cheergoivan.util.FileUtil;
 
 public class DefaultTheme {
@@ -25,6 +26,7 @@ public class DefaultTheme {
 					File newFile=new File(defaultThemeDir,f.getName());
 					Files.copy(FileUtil.getResourceFileContent(r), Paths.get(newFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
 				}
+				new SetWebPageTheme().accept(GlobalSettings.defaultTheme);
 			}
 		}
 	}

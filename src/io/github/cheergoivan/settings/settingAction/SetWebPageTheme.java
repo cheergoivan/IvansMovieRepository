@@ -13,14 +13,16 @@ public class SetWebPageTheme implements Consumer<Object>{
 	@Override
 	public void accept(Object t) {
 		String theme=(String)t;
+		System.out.println("set web page theme as "+theme+"...");
 		String localRepoPath=Settings.localRepository.getValueAsString();
 		MovieFileFilter movieFilter=new MovieFileFilter();
 		//delete resources in local repository
 		FileUtil.deleteFilesInDirectory(new File(localRepoPath),
 				file->!movieFilter.accept(file)
 				&&!".git".equals(file.getName())
-				&&!GlobalSettings.themeDir.equals(file.getName()));
+				&&!GlobalSettings.themeDir.equals("/"+file.getName()));
 		String themePath=localRepoPath+GlobalSettings.themeDir+"/"+theme;
+		System.out.println(themePath);
 		//copy resource to local repository
 		FileUtil.copyChildrenFiles(new File(themePath), 
 				(f,n)->!n.equals(GlobalSettings.templateFileName), new File(localRepoPath));

@@ -25,7 +25,8 @@ public class HtmlPageProducer {
 		localRepository=new File(Settings.localRepository.getValueAsString());
 		File templateFile=new File(templatePath);
 		if(!templateFile.exists())
-			throw new IOException("can not load current theme "+Settings.webPageTheme.getValueAsString());
+			throw new IOException("can not load current theme "+Settings.webPageTheme.getValueAsString()
+			+" because file "+GlobalSettings.templateFileName+" is not found");
 		resolver=new TemplateResolver(FileUtil.getFileContent(templatePath));
 	}
 	
@@ -49,14 +50,15 @@ public class HtmlPageProducer {
 	}
 
 	private String fillWebPageTitle(String html){
-		return html.replace("{{webPageTitle}}", Settings.webPageTitle.getValueAsString());
+		return html.replace("@webPageTitle", Settings.webPageTitle.getValueAsString());
 	}
 	
 	private String fillNextPage(String html,int nextPage){
-		return html.replace("{{nextPage}}", String.valueOf(nextPage));
+		return html.replace("@nextPage", String.valueOf(nextPage));
 	}
 	
 	private void createHtmlFile(List<Movie> movies,int pageId,int nextPage) throws IOException{
+		
 		String html=resolver.fillMovies(movies);
 		html=fillWebPageTitle(html);
 		html=fillNextPage(html,nextPage);
@@ -65,6 +67,7 @@ public class HtmlPageProducer {
 		if(!newFile.exists())
 			newFile.createNewFile();
 		Files.write(Paths.get(newHtmlFilePath),html.getBytes("utf-8"),StandardOpenOption.TRUNCATE_EXISTING);
+		System.out.println("create "+htmlFileName(pageId));
 	}
 	
 	private String htmlFileName(int page){

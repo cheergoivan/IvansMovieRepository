@@ -21,6 +21,7 @@ public class MovieRepositoryGenerator {
 	
 	public void run() throws IOException{
 		List<Movie> movies=movieReader.readAll(localRepository.getAbsolutePath());
+		movies.sort((m1,m2)->Double.compare(m2.getRatings(),m1.getRatings()));
 		producer.createMoviePages(movies);
 	}
 }
