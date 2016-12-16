@@ -1,11 +1,21 @@
 package io.github.cheergoivan.util;
 
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class StringUtil {
 	public static boolean isEmpty(String s){
 		return s==null||"".equals(s);
+	}
+	
+	public static String convertStreamToString(InputStream in){
+		Scanner scanner =new Scanner(in);
+		scanner.useDelimiter("^");
+		String content=scanner.hasNext()?scanner.next():"";
+		scanner.close();
+		return content;
 	}
 	
 	public static String[] splitCmdArgs(String input){

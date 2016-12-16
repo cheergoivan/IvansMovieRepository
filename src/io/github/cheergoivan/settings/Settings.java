@@ -5,8 +5,9 @@ import java.util.function.Predicate;
 
 import io.github.cheergoivan.settings.settingAction.DefaultSettingAction;
 import io.github.cheergoivan.settings.settingAction.SetLocalRepository;
-import io.github.cheergoivan.settings.settingValuePredicate.PositiveNumberPredicate;
+import io.github.cheergoivan.settings.settingAction.SetWebPageTheme;
 import io.github.cheergoivan.settings.settingValuePredicate.TruePredicate;
+import io.github.cheergoivan.settings.settingValuePredicate.WebPageThemePredicate;
 import io.github.cheergoivan.settings.settingValuePredicate.LocalRepositoryPredicate;
 
 public enum Settings {
@@ -19,13 +20,10 @@ public enum Settings {
 	
 	localRepository("",true,LocalRepositoryPredicate.class,SetLocalRepository.class),
 	
-	webPageTemplate(""),
+	webPageTheme(GlobalSettings.defaultTheme,true,WebPageThemePredicate.class,SetWebPageTheme.class),
 	
-	webPageTitle(""),
+	webPageTitle("");
 	
-	moviesPerPage(7,true,PositiveNumberPredicate.class,DefaultSettingAction.class);
-
-
 	private Object value;
 	/**
 	 * whether the setting is displayed to user
@@ -40,13 +38,6 @@ public enum Settings {
 		this.visible=true;
 		this.valuePredicate=TruePredicate.class;
 		this.settingAction=DefaultSettingAction.class;
-	}
-	
-	Settings(Object value,Class<? extends Consumer<Object>> settingAction){
-		this.value=value;
-		this.visible=true;
-		this.valuePredicate=TruePredicate.class;
-		this.settingAction=settingAction;
 	}
 	
 	Settings(Object value,boolean visible){
@@ -94,7 +85,7 @@ public enum Settings {
 	}
 	
 	public int getValueAsInteger(){
-		return Integer.parseInt((String) value);
+		return Integer.parseInt(getValueAsString());
 	}
 
 	/**

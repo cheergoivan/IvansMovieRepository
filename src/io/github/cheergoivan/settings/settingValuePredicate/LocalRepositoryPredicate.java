@@ -22,5 +22,4 @@ public class LocalRepositoryPredicate  implements Predicate<Object>{
 		}
 		return result;
 	}
-	
 }

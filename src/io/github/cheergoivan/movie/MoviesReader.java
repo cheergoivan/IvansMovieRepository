@@ -6,13 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import io.github.cheergoivan.util.filter.JPGorPNGFileFilter;
+
 
 public class MoviesReader {
-	private final String[] pictureFormats={"jpg","png"};
-	
 	public List<Movie> readAll(String directory){
 		List<Movie> result=new LinkedList<>();
-		getFilesOfPattern(new File(directory),file->isPicture(file),file->{
+		getFilesOfPattern(new File(directory),new JPGorPNGFileFilter(),file->{
 			Movie movie=fileToMovie(file);
 			if(movie!=null)
 				result.add(movie);
@@ -50,13 +50,5 @@ public class MoviesReader {
 			return null;
 		}
 		return m;
-	}
-	
-	private boolean isPicture(File f){
-		for(String format:pictureFormats){
-			if(f.getName().endsWith("."+format))
-				return true;
-		}
-		return false;
 	}
 }

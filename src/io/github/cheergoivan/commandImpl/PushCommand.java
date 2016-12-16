@@ -27,11 +27,7 @@ public class PushCommand implements CommandExecutor {
 				if (needsCredential())
 					requireCredential();
 				MovieRepositoryGenerator generator = new MovieRepositoryGenerator(new File(localRepoPath));
-				try {
-					generator.run();
-				} catch (IOException e) {
-					StringUtil.printError(e.getMessage());
-				}
+				generator.run();
 				GitUtil.addAllChanges(localRepoPath);
 				GitUtil.commitAll(localRepoPath, "update");
 				GitUtil.push(localRepoPath, Settings.username.getValueAsString(), Settings.password.getValueAsString());

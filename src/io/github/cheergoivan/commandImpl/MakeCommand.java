@@ -12,9 +12,14 @@ public class MakeCommand implements CommandExecutor{
 
 	@Override
 	public void execute(String[] args) throws IllegalArgumentException {
+		if (!Settings.localRepository.isSetted()) {
+			StringUtil.printError("LocalRepository doesn't exist");
+			return;
+		}
 		String localRepoPath = Settings.localRepository.getValueAsString();
-		MovieRepositoryGenerator generator = new MovieRepositoryGenerator(new File(localRepoPath));
 		try {
+			MovieRepositoryGenerator generator = 
+					new MovieRepositoryGenerator(new File(localRepoPath));
 			generator.run();
 		} catch (IOException e) {
 			StringUtil.printError(e.getMessage());
