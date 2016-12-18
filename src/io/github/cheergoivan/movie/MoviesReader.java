@@ -44,7 +44,7 @@ public class MoviesReader {
 			m.setYear(Integer.parseInt(movieParts[1]));
 			m.setDirector(movieParts[2]);
 			m.setRatings(Double.parseDouble(movieParts[3]));
-			m.setDoubanId(Integer.parseInt(movieParts[4]));
+			m.setDoubanId(Long.parseLong(movieParts[4]));
 			m.setPoster(file.getName());
 		}catch(NumberFormatException e){
 			return null;

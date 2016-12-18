@@ -5,7 +5,7 @@ public class Movie {
 	private int year;
 	private String director;
 	private double ratings;
-	private int doubanId;
+	private long doubanId;
 	private String poster;
 
 	public String getName() {
@@ -40,11 +40,11 @@ public class Movie {
 		this.ratings = ratings;
 	}
 
-	public int getDoubanId() {
+	public long getDoubanId() {
 		return doubanId;
 	}
 
-	public void setDoubanId(int doubanId) {
+	public void setDoubanId(long doubanId) {
 		this.doubanId = doubanId;
 	}
 
